@@ -92,6 +92,15 @@ function showMyModalByScroll() {
     }
   }
   window.addEventListener("scroll", showMyModalByScroll);
-})
 
+  //DATA
+  const dedline = '2022-05-22'
+
+  function getTime(endTime ){
+    const time = Date.parse(endTime) - Date.parse(new Date()),
+    days = Math.floor()  
+  }
+
+
+})
 
