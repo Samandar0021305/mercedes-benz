@@ -97,10 +97,25 @@ function showMyModalByScroll() {
   const dedline = '2022-05-22'
 
   function getTime(endTime ){
-    const time = Date.parse(endTime) - Date.parse(new Date()),
-    days = Math.floor()  
-  }
+    const total = Date.parse(endTime) - Date.parse(new Date()),
+    days = Math.floor((total / (1000 * 60 * 60 * 24))),
+    seconds = Math.floor(((total / 1000 ) % 60)),
+    minuts = Math.floor(((total / 1000) % 60)),
+    hours = Math.floor((total / (1000*60*60)*24));
 
+    return {
+      total : total,
+      days:days,
+      seconds:seconds,
+      hours:hours,
+      minuts:minuts,
+    }
+  }
+ 
+
+  function setClock(selector,endTime){
+    
+  }
 
 })
 
