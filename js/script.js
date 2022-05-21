@@ -94,28 +94,56 @@ function showMyModalByScroll() {
   window.addEventListener("scroll", showMyModalByScroll);
 
   //DATA
-  const dedline = '2022-05-22'
+  const dedline = '2022-08-11'
 
   function getTime(endTime ){
     const total = Date.parse(endTime) - Date.parse(new Date()),
-    days = Math.floor((total / (1000 * 60 * 60 * 24))),
-    seconds = Math.floor(((total / 1000 ) % 60)),
-    minuts = Math.floor(((total / 1000) % 60)),
-    hours = Math.floor((total / (1000*60*60)*24));
+    days = Math.floor(total / (1000 * 60 * 60 * 24)),
+    seconds = Math.floor((total / 1000 ) % 60),
+    minutes = Math.floor((total / 1000 / 60) % 60),
+    hours = Math.floor((total / (1000*60*60)) % 24);
 
     return {
       total : total,
       days:days,
       seconds:seconds,
       hours:hours,
-      minuts:minuts,
+      minuts:minutes,
+    }
+  }
+
+
+  function getZero(num){
+    if(num >= 0 && num < 10){
+      return "0" + num;
+    }else{
+      return num
     }
   }
  
 
   function setClock(selector,endTime){
-    
+    const timer = document.querySelector(selector),
+    days = timer.querySelector("#days"),
+    hours = timer.querySelector("#hours"),
+    minutes = timer.querySelector("#minutes"),
+    seconds = timer.querySelector("#seconds"),
+    timeInterval = setInterval(updateClock,1000);
+    updateClock();
+
+    function updateClock(){
+      const time  = getTime(endTime)
+      days.innerHTML = getZero(time.days);
+      hours.innerHTML = getZero(time.hours);
+      minutes.innerHTML = getZero(time.minuts);
+      seconds.innerHTML = getZero(time.seconds);
+      if(time.total <= 0){
+        clearInterval(timeInterval)
+      }
+    }
   }
+
+  setClock('.timer',dedline)
 
 })
 
