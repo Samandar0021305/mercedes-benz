@@ -154,6 +154,7 @@ function showMyModalByScroll() {
       this.alt = alt
       this.title = title
       this.descr = descr
+      this.price = price
       this.classess = classess
       this.parent = document.querySelector(parentSelector)
       this.transfer = 10.500
@@ -165,7 +166,15 @@ function showMyModalByScroll() {
     }
 
     render(){
+
         const element = document.createElement("div");
+        if(this.classess.length === 0){
+          this.classess = 'menu__item'
+          element.classList.add(this.classess)
+        }else{
+   this.classess.forEach(className => element.classList.add(className))
+        }
+
         element.innerHTML = `
          <div class="menu__item">
             <img src=${this.src} alt=${this.alt} />
@@ -185,6 +194,38 @@ function showMyModalByScroll() {
 
   }
 
-  
+
+  new CarCard(
+    'img/tabs/1.jpg',
+  'car',
+  '2022 Mercedes-Benz C-Class',
+  `The 2021 Mercedes-Benz C-Class finishes in the top half of our
+  luxury small car rankings. It's powerful and upscale, but it has
+  so-so handli...`,
+  100,
+  '.main .container'
+  ).render()
+
+  new CarCard(
+    'img/tabs/2.jpg',
+  'car',
+  '2022 Mercedes-Benz C-Class',
+  `The 2021 Mercedes-Benz C-Class finishes in the top half of our
+  luxury small car rankings. It's powerful and upscale, but it has
+  so-so handli...`,
+  100,
+  '.main .container'
+  ).render()
+
+  new CarCard(
+    'img/tabs/3.jpg',
+  'car',
+  '2022 Mercedes-Benz C-Class',
+  `The 2021 Mercedes-Benz C-Class finishes in the top half of our
+  luxury small car rankings. It's powerful and upscale, but it has
+  so-so handli...`,
+  100,
+  '.main .container'
+  ).render()
 })
 
